@@ -7,7 +7,7 @@ ZoomH6Remote::ZoomH6Remote(HardwareSerial* serial, Stream* debug, uint32_t timeo
 
 /*This will write the data to the serial, and return the expected number of replys
   in case of failure the result is negative */
-int8_t ZoomH6Remote::writeWithReply(byte* data, size_t dataLength, byte* reply, size_t replyLength) {
+int8_t ZoomH6Remote::writeWithReply(const byte* data, size_t dataLength, byte* reply, size_t replyLength) {
   int8_t respCount = 0;
 
   for (int i = 0; i < dataLength; ++i) {
@@ -108,7 +108,7 @@ bool ZoomH6Remote::sendCommand(byte primary, byte secondary, uint32_t gap, byte*
 
   if (gap) delay(gap);
 
-  writeWithReply(releaseCom, 2, nullptr, 3);
+  if (!writeWithReply(releaseCom, 2, nullptr, 3)) return false;
 
   return true;
 }

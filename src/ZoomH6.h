@@ -44,7 +44,7 @@ class ZoomH6Remote {
   bool sendCommand(byte primary, byte secondary, uint32_t gap, byte* reply = nullptr);
 
  private:
-  int8_t writeWithReply(byte* data, size_t dataLength, byte* reply, size_t replyLength);
+  int8_t writeWithReply(const byte* data, size_t dataLength, byte* reply, size_t replyLength);
   void printStatus(byte& high, byte& low);
 
   Stream* _debug;
